@@ -1,0 +1,51 @@
+.image{
+
+  width: 100%;
+  height: 290px;
+
+}
+
+.logo{
+  margin-left: 2%;
+}
+
+.right{
+
+  margin-right: 2%;
+}
+
+li{
+  margin-right: 10px;
+  font-size: 25px;
+}
+
+body{
+
+	background-image: url("/images/bg.jpg");
+	background-image: stretch;
+}
+
+.row{
+	background-color: white;
+}
+
+.nav-wrapper, .page-footer{
+
+	background-color: dodgerblue;
+}
+
+.sizing{
+  width: 98%;
+  background-image: url("/images/bg.jpg");
+  border: 2px solid gray;
+}
+
+.content{
+  background-image: url("/images/bg.jpg");
+}
+
+.sizing:hover{
+
+  border: 2px solid dodgerblue;
+
+}
