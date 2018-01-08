@@ -1,62 +1,136 @@
 import React, { Component } from 'react';
 import './App.css';
+import Search from "./components/Search.js";
 import ItemCard from "./components/itemCard.js";
 import ResultsCard from "./components/resultsCard.js";
+import API from "./utils/API";
+import axios from "axios";
 
 class App extends Component {
 
-// state = {
-//     items,
-//     Score: 0,
-//     TopScore: 0,
-//     correct: ""
-//   };
+  state = {
+    results: [],
+    articles: [],
+    title: "",
+    year: "",
+    searched: false,
+    saved: false,
+    movieTitle: "",
+    movieYear: "",
+    rated: "",
+    genre: "",
+    plot: "",
+    director: "",
+    actors: "",
+    rating: "",
+    awards: "",
+    poster: ""
+  };
 
-//     shuffleItems = () => {
+    searchMovie = (title, year) => {
+    API.search(title, year)
+      .then(res => this.setState({ results: res.data }))
+      .catch(err => console.log(err));
+  };
+
+   apiSearch = event => {
+    event.preventDefault();
+    this.searchMovie(this.state.title, this.state.year);
+  };
+
+ inputChange = event => {
+    const name = event.target.name;
+    const value = event.target.value;
+
+    this.setState({
+      [name]: value
+    });
+  };
+
+  saveMovie = () => {
+
+  const res = this.state.results
+
+this.setState({
+
+   movieTitle: res.Title,
+   movieYear: res.Year,
+   rated: res.Rated,
+   genre: res.Genre,
+   plot: res.Plot,
+   director: res.Director,
+   actors: res.Actors,
+   rating: res.imdbRating,
+   awards: res.Awards,
+   poster: res.Poster,
+   searched: true
+
+
+ })
+
+
+console.log(this.state.movieTitle);
+
+ const info = {
+
+  title: this.state.movieTitle,
+  year: this.state.movieYear,
+  rated: this.state.rated,
+  genre: this.state.genre,
+  plot:  this.state.plot,
+  actors: this.state.actors,
+  poster: this.state.poster,
+  rating: this.state.rating,
+  director: this.state.director,
+  awards: this.state.awards
+
+ }
+
+if(this.state.searched === true){
+
+axios.post("/save", {info}).then(articles => {
+
+console.log("got all articles");
+console.log(articles.data.dbArticle);
+
+
+this.setState({
+
+    articles: articles.data.dbArticle
+})
+
+})
+
+}
+};
+
+
+getArticles = () => {
+
+axios.get("/articles").then(articles => {
+
+console.log("got articles");
+console.log(articles.data.dbArticle);
+
+ this.setState({
+
+    articles: articles.data.dbArticle
+})
+
+})
+};
+
+ componentDidMount() {
     
-//     const items = this.state.items.map(a =>
-//       [Math.random(),a]).sort((a,b) => a[0]-b[0]).map((a) => a[1]);
-
-//   this.setState({ items });
-//   };
-
-
-//   addScore = (val) => {
-    
-//   const value = parseInt(val);
-
-//     for (let i = 0; i < items.length; i++) {
-
-//   if (items[value].clicked === true){
-
-//      this.state.correct = "Wrong Choice!";
-
-//   if(this.state.Score > this.state.TopScore){
-//      this.state.TopScore = this.state.Score;
-//    }
-//     this.setState({ Score: 0 });
-
-// for (let i = 0; i < items.length; i++) {
-
-//   items[i].clicked = false;
-
-//   }
-//   return false;
-// }
-
-//     }
-  
-
-//    this.state.Score = this.state.Score + 1;
-//    this.state.correct = "Correct Choice!";
-
-//    items[value].clicked = true;
-
-
-//   };
+    this.getArticles();
+  }
 
 
   render() {
+
+        console.log(this.state.results)
+        console.log(this.state.articles)
+
     return (
   
   <div>
@@ -64,7 +138,7 @@ class App extends Component {
     <div class="col s12">
       <nav>
     <div class="nav-wrapper">
-      <a href="#!" class="brand-logo center">The MERN ESPN NBA Article Scrubber</a>
+      <a href="#!" class="brand-logo center">The MERN Movie Scrubber</a>
     </div>
   </nav>
   </div>
@@ -72,35 +146,44 @@ class App extends Component {
 <div className="container">
 <div class="row toprow z-depth-5">
   <div class="col s12 center-align hoverable">
-  <h4>Search for and annotate articles of interest!</h4>
+  <h4>Search for and review movies of interest!</h4>
   <hr/>
-     <form class="col s12">
-      <div className="input-field col s12">
-          <input id="topic" type="text"/>
-          <label for="topic">Topic</label>
-        </div>
-        <div className="input-field col s12">
-          <input id="start" type="text"/>
-          <label for="start">Start Year</label>
-        </div>
-
-<div className="input-field col s12">
-          <input id="end" type="text"/>
-          <label for="end">End Year</label>
-        </div>
-        <div className="col s12 buttonCol"><h4>
-<a class="waves-effect waves-light btn-large">Search</a></h4>
-</div>
-     </form>
+    <Search
+    title={this.state.title}
+    year={this.state.year}
+    search={this.apiSearch}
+    input={this.inputChange}
+    
+    />
 </div>
 </div>
    <div class="row toprow z-depth-5">
-<ResultsCard/>
+  <ResultsCard
+  results={this.state.results}
+  save={this.saveMovie}
+    />
    </div>
 
    <div class="row toprow z-depth-5">
-<ItemCard/>
-   </div>
+      <div className="col s12 center hoverable">
+        <h4>Saved Movies</h4>
+        <hr/>
+        </div>
+{this.state.articles.map(articles => (
+          <ItemCard
+            title={articles.title}
+            year={articles.year}
+            genre={articles.genre}
+            plot={articles.plot}
+            poster={articles.poster}
+            actors={articles.actors}
+            rated={articles.rated}
+            rating={articles.rating}
+            awards={articles.year}
+            director={articles.director}
+            />
+          ))}
+          </div>
 </div>
 
 <footer className="page-footer">

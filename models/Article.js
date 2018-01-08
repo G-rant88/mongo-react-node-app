@@ -13,27 +13,49 @@ var ArticleSchema = new Schema({
 
   },
   // `link` is required and of type String
-  link: {
-    type: String,
-    unique: true
+    year: {
+    type: String
   },
 
-    sum: {
-    type: String,
-    unique: true
-  }
-  ,
-  // // `note` is an object that stores a Note id
-  // // The ref property links the ObjectId to the Note model
-  // // This allows us to populate the Article with an associated Note
+    rated: {
+    type: String
+  },
+
+    genre: {
+    type: String
+  },
+
+    plot: {
+    type: String
+  },
+
+    actors: {
+    type: String
+  },
+
+   poster: {
+    type: String
+  },
+
+    rating: {
+    type: String
+  },
+
+  director: {
+    type: String
+  },
+
+  awards: {
+    type: String
+  },
+
   note: {
     type: Schema.Types.ObjectId,
     ref: "Note"
   }
 });
 
-// This creates our model from the above schema, using mongoose's model method
+
 var Article = mongoose.model("Article", ArticleSchema);
 
-// Export the Article model
 module.exports = Article;
