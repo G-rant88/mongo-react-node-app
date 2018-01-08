@@ -140,6 +140,12 @@ axios.post("/note/"+id, {notey}).then(articles => {
  componentDidMount() {
     
     this.getArticles();
+
+// function afterReactHasCreatedAllDOM (){
+//     // Manually make all DOM with .collapsible collapsible 
+//     document.getElementsByClassName('.collapsible').collapsible();
+// }
+
   }
 
 
@@ -152,17 +158,15 @@ axios.post("/note/"+id, {notey}).then(articles => {
   
   <div>
     <div class="row">
-    <div class="col s12">
       <nav>
     <div class="nav-wrapper">
-      <a href="#!" class="brand-logo center">The MERN Movie Scrubber</a>
+      <a href="#" class="brand-logo center">The MERN Movie Scrubber</a>
     </div>
   </nav>
-  </div>
 </div>
 <div className="container">
 <div class="row toprow z-depth-5">
-  <div class="col s12 center-align">
+  <div class="col s12 center-align hoverable">
   <h4>Search for and review movies of interest!</h4>
   <hr/>
     <Search
@@ -199,7 +203,7 @@ axios.post("/note/"+id, {notey}).then(articles => {
             awards={articles.awards}
             director={articles.director}
             id={articles._id}
-            review={articles.note.body}
+            // review={articles.note.body}
             input={this.inputChange}
             save={this.saveNote}
             />
