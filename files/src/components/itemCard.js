@@ -3,7 +3,8 @@ import '../App.css';
 
 const ItemCard = props => (
 
-           <ul className="collapsible col s12 hoverable" data-collapsible="accordion">
+   <div className="col s12 hoverable">
+           <ul className="collapsible" data-collapsible="accordion">
     <li>
       <div className="collapsible-header">
 <h4 className="title">{props.title} <button class="btn note" data-title="{{title}}" data-sum="{{sum}}" data-link="{{link}}" data-id="{{_id}}">Review</button> <button class="btn red delete" data-title="{{title}}" data-sum="{{sum}}" data-link="{{link}}">Delete</button></h4>
@@ -19,17 +20,17 @@ const ItemCard = props => (
         <p>Actors: {props.actors}</p>
         <p>imdb Rating: {props.rating}</p>
         <p>Awards: {props.awards}</p>
+        <p>Review: {props.review}</p>
+        <br/>
+        <a class="btn red delClick right" id="del{{_id}}">Delete Review</a> 
         </div>
         <div className="col s6">
         <img src={props.poster}/>
         </div>
-
-        <div className="col s12">
-       <p>Review: {props.review}</p>
-        <a class="btn red delClick right" id="del{{_id}}">Delete Review</a> 
-        </div>
+          <br/>
 
 <div className="notesHere col s12">
+  
 <form id="noteBody" class="input-field">
   <div>
   <i class="material-icons prefix">create</i>
@@ -42,9 +43,12 @@ type="text" id="notey" onChange={props.input}></textarea>
       <h4><a className="btn cyan saveNote" value={props.id} onClick={() => props.save(props.id)}>Save</a></h4>
     </div>  
 </div>
+
 </div>
     </li>
     </ul>
+  </div>
+
 
 );
 

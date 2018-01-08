@@ -91,7 +91,7 @@ if(this.state.searched === true){
 
 axios.post("/save", {info}).then(articles => {
 
-console.log("got articles");
+console.log("got all articles");
 console.log(articles.data.dbArticle);
 
 
@@ -162,7 +162,7 @@ axios.post("/note/"+id, {notey}).then(articles => {
 </div>
 <div className="container">
 <div class="row toprow z-depth-5">
-  <div class="col s12 center-align">
+  <div class="col s12 center-align hoverable">
   <h4>Search for and review movies of interest!</h4>
   <hr/>
     <Search
@@ -196,7 +196,7 @@ axios.post("/note/"+id, {notey}).then(articles => {
             actors={articles.actors}
             rated={articles.rated}
             rating={articles.rating}
-            awards={articles.awards}
+            awards={articles.year}
             director={articles.director}
             id={articles._id}
             review={articles.note.body}

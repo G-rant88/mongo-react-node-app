@@ -1,0 +1,123 @@
+[
+  {
+    "id": 0,
+    "name": "Admiral Ackbar",
+    "image": "/images/akbar.jpg",
+    "clicked": false
+  },
+  {
+    "id": 1,
+    "name": "Boba Fett",
+    "image": "/images/boba.jpg",
+    "clicked": false
+
+  },
+  {
+    "id": 2,
+    "name": "C-3P0",
+    "image": "/images/c3.jpg",
+    "clicked": false
+  },
+  {
+    "id": 3,
+    "name": "Chewbacca",
+    "image": "/images/chewy.jpg",
+    "clicked": false
+  },
+  {
+    "id": 4,
+    "name": "Emperor",
+    "image": "/images/emperor.jpeg",
+    "clicked": false
+  },
+  {
+    "id": 5,
+    "name": "Ewok",
+    "image": "/images/ewok.jpg",
+    "clicked": false
+  },
+  {
+    "id": 6,
+    "name": "Greedo",
+    "image": "/images/greedo.jpg",
+    "clicked": false
+  },
+  {
+    "id": 7,
+    "name": "Han Solo",
+    "image": "/images/han.jpg",
+    "clicked": false
+  },
+  {
+    "id": 8,
+    "name": "Jabba The Hutt",
+    "image": "/images/jabba.jpg",
+    "clicked": false
+  },
+  {
+    "id": 9,
+    "name": "Lando Calrissian",
+    "image": "/images/lando.jpg",
+    "clicked": false
+  },
+  {
+    "id": 10,
+    "name": "Princess Leia",
+    "image": "/images/leia.jpg",
+    "clicked": false
+  },
+  {
+    "id": 11,
+    "name": "Luke Skywalker",
+    "image": "/images/luke.jpg",
+    "clicked": false
+  },
+    {
+    "id": 12,
+    "name": "Obi-Wan Kenobi",
+    "image": "/images/obiwan.jpg",
+    "clicked": false
+  },
+  {
+    "id": 13,
+    "name": "R2-D2",
+    "image": "/images/r2.jpg",
+    "clicked": false
+  },
+    {
+    "id": 14,
+    "name": "Sand People",
+    "image": "/images/sand.jpg",
+    "clicked": false
+  },
+  {
+    "id": 15,
+    "name": "Slave Leia",
+    "image": "/images/slaveleia.jpg",
+    "clicked": false
+  },
+    {
+    "id": 16,
+    "name": "Storm Trooper",
+    "image": "/images/storm.jpg",
+    "clicked": false
+  },
+    {
+    "id": 17,
+    "name": "Tauntaun",
+    "image": "/images/tauntaun.jpg",
+    "clicked": false
+  },
+   {
+    "id": 18,
+    "name": "Darth Vader",
+    "image": "/images/vader.jpg",
+    "clicked": false
+  },
+   {
+    "id": 19,
+    "name": "Yoda",
+    "image": "/images/yoda.jpg",
+    "clicked": false
+  }
+]
