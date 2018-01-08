@@ -5,6 +5,10 @@ import ItemCard from "./components/itemCard.js";
 import ResultsCard from "./components/resultsCard.js";
 import API from "./utils/API";
 import axios from "axios";
+import $ from "jquery";
+import 'materialize-css';
+import 'materialize-css/dist/css/materialize.min.css';
+
 
 class App extends Component {
 
@@ -143,7 +147,7 @@ axios.post("/note/"+id, {notey}).then(articles => {
 
 // function afterReactHasCreatedAllDOM (){
 //     // Manually make all DOM with .collapsible collapsible 
-//     document.getElementsByClassName('.collapsible').collapsible();
+    $('.collapsible').collapsible();
 // }
 
   }
