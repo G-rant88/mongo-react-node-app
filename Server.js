@@ -70,7 +70,7 @@ app.post("/save", function(req, res) {
 
     });
 
-app.get("/ben-mern-app.herokuapp.com/articles", function(req, res) {
+app.get("/articles", function(req, res) {
 
 db.Article
     .find({})
