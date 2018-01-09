@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.17.1",
     "cheerio": "^1.0.0-rc.2",
+    "create-react-app": "^1.4.3",
     "express": "^4.16.2",
     "jquery": "^3.2.1",
     "materialize-css": "^0.100.2",
