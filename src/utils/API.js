@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASEURL = "http://www.omdbapi.com/?";
+const BASEURL = "https://www.omdbapi.com/?";
 const APIKEY = "apikey=367da9d9";
 
 // Export an object with a "search" method that searches the Giphy API for the passed query
