@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import './App.css';
 import Search from "./components/Search.js";
 import ItemCard from "./components/itemCard.js";
+import NoItemCard from "./components/NoitemCard.js";
+import NoSavedCard from "./components/NoSavedCard.js";
 import ResultsCard from "./components/resultsCard.js";
+import NoResultsCard from "./components/noResultsCard.js";
 import API from "./utils/API";
 import axios from "axios";
 import $ from "jquery";
 import 'materialize-css';
 import 'materialize-css/dist/css/materialize.min.css';
+import 'materialize-css/dist/js/materialize.min.js';
 
 
 class App extends Component {
@@ -19,6 +23,7 @@ class App extends Component {
     year: "",
     searched: false,
     saved: false,
+    arts: true,
     movieTitle: "",
     movieYear: "",
     rated: "",
@@ -29,12 +34,14 @@ class App extends Component {
     rating: "",
     awards: "",
     poster: "",
-    review: ""
+    review: "",
+    norev: "No review yet."
   };
 
     searchMovie = (title, year) => {
     API.search(title, year)
-      .then(res => this.setState({ results: res.data }))
+      .then(res => this.setState({ results: res.data,
+      								searched: true }))
       .catch(err => console.log(err));
   };
 
@@ -54,7 +61,7 @@ class App extends Component {
 
   saveMovie = () => {
 
-  const res = this.state.results
+  let res = this.state.results
 
 this.setState({
 
@@ -68,7 +75,7 @@ this.setState({
    rating: res.imdbRating,
    awards: res.Awards,
    poster: res.Poster,
-   searched: true
+   searched: false
 
 
  })
@@ -78,20 +85,20 @@ console.log(this.state.movieTitle);
 
  const info = {
 
-  title: this.state.movieTitle,
-  year: this.state.movieYear,
-  rated: this.state.rated,
-  genre: this.state.genre,
-  plot:  this.state.plot,
-  actors: this.state.actors,
-  poster: this.state.poster,
-  rating: this.state.rating,
-  director: this.state.director,
-  awards: this.state.awards
+  title: res.Title,
+  year: res.Year,
+  rated: res.Rated,
+ genre: res.Genre,
+   plot: res.Plot,
+   director: res.Director,
+   actors: res.Actors,
+   rating: res.imdbRating,
+   awards: res.Awards,
+   poster: res.Poster
 
  }
 
-if(this.state.searched === true){
+
 
 axios.post("/save", {info}).then(articles => {
 
@@ -101,12 +108,16 @@ console.log(articles.data.dbArticle);
 
 this.setState({
 
-    articles: articles.data.dbArticle
+    articles: articles.data.dbArticle,
+    saved: true,
+    arts: true
 })
+
+$('.collapsible').collapsible();
 
 })
 
-}
+
 };
 
 
@@ -121,6 +132,8 @@ console.log(articles.data.dbArticle);
 
     articles: articles.data.dbArticle
 })
+
+$('.collapsible').collapsible();
 
 })
 };
@@ -137,6 +150,8 @@ note: this.state.review
 
 axios.post("/note/"+id, {notey}).then(articles => {
 
+  this.getArticles();
+
 
 })
 };
@@ -145,16 +160,16 @@ axios.post("/note/"+id, {notey}).then(articles => {
     
     this.getArticles();
 
-// function afterReactHasCreatedAllDOM (){
-//     // Manually make all DOM with .collapsible collapsible 
     $('.collapsible').collapsible();
-// }
 
   }
 
 
   render() {
 
+  		const isSearched = this.state.searched;
+  		const isSaved = this.state.saved;
+  		const allArts = this.state.arts;
         console.log(this.state.results)
         console.log(this.state.articles)
 
@@ -164,7 +179,7 @@ axios.post("/note/"+id, {notey}).then(articles => {
     <div class="row">
       <nav>
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo center">The MERN Movie Scrubber</a>
+      <a href="#" class="brand-logo center">The MERN Movie Saver</a>
     </div>
   </nav>
 </div>
@@ -183,18 +198,43 @@ axios.post("/note/"+id, {notey}).then(articles => {
 </div>
 </div>
    <div class="row toprow z-depth-5">
+     <div class="col s12 res hoverable">
+      <div className="col s12 center">
+        <h4>Results</h4>
+        <hr/>
+        </div>
+
+{isSearched ?
+	(
   <ResultsCard
   results={this.state.results}
   save={this.saveMovie}
     />
-   </div>
+):
+(	
+ <NoResultsCard/>
 
+)
+}
+
+   </div>
+</div>
    <div class="row toprow z-depth-5">
       <div className="col s12 center">
         <h4>Saved Movies</h4>
         <hr/>
         </div>
-{this.state.articles.map(articles => (
+{
+
+allArts ?
+
+(
+
+this.state.articles.map(articles => (
+
+articles.note ?
+
+(
           <ItemCard
             title={articles.title}
             year={articles.year}
@@ -207,11 +247,41 @@ axios.post("/note/"+id, {notey}).then(articles => {
             awards={articles.awards}
             director={articles.director}
             id={articles._id}
-            // review={articles.note.body}
+            review={articles.note.body}
             input={this.inputChange}
             save={this.saveNote}
             />
-          ))}
+):
+(
+		<NoItemCard
+            title={articles.title}
+            year={articles.year}
+            genre={articles.genre}
+            plot={articles.plot}
+            poster={articles.poster}
+            actors={articles.actors}
+            rated={articles.rated}
+            rating={articles.rating}
+            awards={articles.awards}
+            director={articles.director}
+            id={articles._id}
+            input={this.inputChange}
+            save={this.saveNote}
+            review={this.state.norev}
+            />
+
+)
+
+          ))
+
+):
+(
+
+
+<NoSavedCard/>
+
+	)
+	}
           </div>
 </div>
 

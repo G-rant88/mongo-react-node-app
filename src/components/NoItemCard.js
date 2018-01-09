@@ -1,7 +1,7 @@
 import React from "react";
 import '../App.css';
 
-const ItemCard = props => (
+const NoItemCard = props => (
 
 
            <ul className="collapsible col s12 hoverable" data-collapsible="accordion">
@@ -27,7 +27,6 @@ const ItemCard = props => (
 
         <div className="col s10">
        <p>Review: {props.review}</p>
-        <a class="btn red delClick right" id="del{{_id}}">Delete Review</a> 
         </div>
 
 <div className="notesHere col s12">
@@ -49,4 +48,4 @@ type="text" id="notey" onChange={props.input}></textarea>
 
 );
 
-export default ItemCard;
+export default NoItemCard;

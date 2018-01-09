@@ -1,15 +1,12 @@
  import React from "react";
 import '../App.css';
 
-const ResultsCard = props => 
+const ResultsCard = props =>      
 
-      <div class="col s12 res hoverable">
-      <div className="col s12 center">
-        <h4>Results</h4>
-        <hr/>
-        </div>
-        <div className="col s6">
+(
 
+<div>
+<div className="col s6">
           <h4 class="title" value={JSON.stringify(props.results)}>Title: {props.results.Title}</h4>
         <p class="sum">Year: {props.results.Year}</p>
         <p>Rating: {props.results.Rated}</p>
@@ -21,19 +18,14 @@ const ResultsCard = props =>
         <p>Awards: {props.results.Awards}</p>
        <h4><a class="btn save" onClick={props.save}>Save Movie</a></h4>
         </div>
-        <div className="col s6">
-
+           <div className="col s6">
 <p><a class="link"><img alt={props.results.Title} src={props.results.Poster}/></a></p>
-
         </div>
 
-        </div>
-       
+</div>
 
 
-
-
-
+ )
 
 
 export default ResultsCard;

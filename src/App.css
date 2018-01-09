@@ -3,11 +3,6 @@
 	background-color: white;
 }
 
-.nav-wrapper, .page-footer{
-
-	background-color: dodgerblue;
-}
-
 
 p{
 
@@ -21,3 +16,4 @@ margin-bottom: 10px;
 
   border-bottom: !important none;
 }
+
