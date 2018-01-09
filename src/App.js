@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Search from "./components/Search.js";
 import ItemCard from "./components/itemCard.js";
-import NoItemCard from "./components/NoitemCard.js";
+import NoItemCard from "./components/NoItemCard.js";
 import NoSavedCard from "./components/NoSavedCard.js";
 import ResultsCard from "./components/resultsCard.js";
 import NoResultsCard from "./components/noResultsCard.js";
