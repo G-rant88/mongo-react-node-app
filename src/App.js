@@ -196,7 +196,7 @@ axios.post("/delete", {info}).then(articles => {
 
   		const isSearched = this.state.searched;
   		const isSaved = this.state.saved;
-  		const allArts = this.state.articles;
+  		const allArts = this.state.articles[0];
       const resArt = this.state.results.Response;
         console.log(this.state.results)
         console.log(this.state.results.Response)
@@ -255,7 +255,7 @@ axios.post("/delete", {info}).then(articles => {
         </div>
 {
 
-allArts !== [] ?
+allArts !== undefined ?
 
 (
 
