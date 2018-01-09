@@ -25,11 +25,11 @@ mongoose.Promise = Promise;
 
 if (process.env.MONGODB_URI){
 
-mongoose.connect("mongodb://heroku_wj95nps2:9su8v23l0nj6r34lcalpiue20a@ds245287.mlab.com:45287/heroku_wj95nps2");
+mongoose.connect(process.env.MONGODB_URI);
 
 } else{
 
-mongoose.connect("mongodb://heroku_wj95nps2:9su8v23l0nj6r34lcalpiue20a@ds245287.mlab.com:45287/heroku_wj95nps2", {
+mongoose.connect("mongodb://localhost/reactdb", {
 
 });
 
