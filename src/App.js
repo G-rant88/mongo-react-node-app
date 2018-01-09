@@ -109,8 +109,7 @@ console.log(articles.data.dbArticle);
 this.setState({
 
     articles: articles.data.dbArticle,
-    saved: true,
-    arts: true
+    saved: true
 })
 
 $('.collapsible').collapsible();
@@ -199,8 +198,9 @@ axios.post("/delete", {info}).then(articles => {
   		const isSearched = this.state.searched;
   		const isSaved = this.state.saved;
   		const allArts = this.state.arts;
+      const resArt = this.state.results.Response;
         console.log(this.state.results)
-        console.log(this.state.articles)
+        console.log(this.state.results.Response)
 
     return (
   
@@ -233,7 +233,7 @@ axios.post("/delete", {info}).then(articles => {
         <hr/>
         </div>
 
-{isSearched ?
+{isSearched && resArt === "True" && resArt !== undefined ?
 	(
   <ResultsCard
   results={this.state.results}

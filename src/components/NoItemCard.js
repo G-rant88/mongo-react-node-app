@@ -27,7 +27,7 @@ const NoItemCard = props => (
         </div>
 
         <div className="col s10">
-       <p>Review: {props.review}</p>
+       <p>{props.review}</p>
         </div>
 
 <div className="notesHere col s12">

@@ -26,7 +26,7 @@ const ItemCard = props => (
         <img src={props.poster}/>
         </div>
 
-        <div className="col s10">
+        <div className="col s9">
        <p>Review: {props.review}</p>
         <a class="btn red delClick right" onClick={() => props.delnote(props.noteid)}>Delete Review</a> 
         </div>
