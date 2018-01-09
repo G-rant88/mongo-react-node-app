@@ -35,7 +35,7 @@ mongoose.connect("mongodb://localhost/reactdb", {
 
 }
 
-app.post("/app/save", function(req, res) {
+app.post("/save", function(req, res) {
 
   console.log(req.body);
 
