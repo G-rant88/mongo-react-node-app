@@ -23,7 +23,6 @@ class App extends Component {
     year: "",
     searched: false,
     saved: false,
-    arts: true,
     movieTitle: "",
     movieYear: "",
     rated: "",
@@ -197,10 +196,11 @@ axios.post("/delete", {info}).then(articles => {
 
   		const isSearched = this.state.searched;
   		const isSaved = this.state.saved;
-  		const allArts = this.state.arts;
+  		const allArts = this.state.articles;
       const resArt = this.state.results.Response;
         console.log(this.state.results)
         console.log(this.state.results.Response)
+        console.log(allArts);
 
     return (
   
@@ -255,7 +255,7 @@ axios.post("/delete", {info}).then(articles => {
         </div>
 {
 
-allArts ?
+allArts !== [] ?
 
 (
 
