@@ -14,6 +14,10 @@ import 'materialize-css/dist/css/materialize.min.css';
 import 'materialize-css/dist/js/materialize.min.js';
 
 
+const colors = {
+  backgroundColor: "dodgerblue"
+};
+
 class App extends Component {
 
   state = {
@@ -183,6 +187,7 @@ axios.post("/app/delete", {info}).then(articles => {
 })
 };
 
+
  componentDidMount() {
     
     this.getArticles();
@@ -206,7 +211,7 @@ axios.post("/app/delete", {info}).then(articles => {
   
   <div>
     <div class="row">
-      <nav>
+      <nav style={colors}>
     <div class="nav-wrapper">
       <a href="#" class="brand-logo center">The MERN Movie Saver</a>
     </div>
@@ -318,7 +323,7 @@ articles.note ?
           </div>
 </div>
 
-  <footer className="page-footer">
+  <footer className="page-footer" style={colors}>
   <div className="footer-copyright">
             <div className="container">
             Made By Ben Grant © 2018
