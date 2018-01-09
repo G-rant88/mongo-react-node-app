@@ -318,13 +318,13 @@ articles.note ?
           </div>
 </div>
 
-<footer className="page-footer">
+
   <div className="footer-copyright">
             <div className="container">
             Made By Ben Grant © 2018
             </div>
           </div>
-       </footer>
+
 
 </div>
     )
