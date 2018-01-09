@@ -156,6 +156,35 @@ axios.post("/note/"+id, {notey}).then(articles => {
 })
 };
 
+delNote = id => {
+
+  var id = id;
+
+
+axios.post("/delnote/"+id).then(articles => {
+
+  this.getArticles();
+
+
+})
+};
+
+delMov = title => {
+
+var info = {
+
+	title: title
+}
+
+
+axios.post("/delete", {info}).then(articles => {
+
+  this.getArticles();
+  $('.collapsible').collapsible('close', 0);
+
+})
+};
+
  componentDidMount() {
     
     this.getArticles();
@@ -248,8 +277,11 @@ articles.note ?
             director={articles.director}
             id={articles._id}
             review={articles.note.body}
+            noteid={articles.note._id}
             input={this.inputChange}
             save={this.saveNote}
+            delnote={this.delNote}
+            delmov={this.delMov}
             />
 ):
 (
@@ -268,6 +300,7 @@ articles.note ?
             input={this.inputChange}
             save={this.saveNote}
             review={this.state.norev}
+            delmov={this.delMov}
             />
 
 )

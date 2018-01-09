@@ -7,11 +7,12 @@ const ItemCard = props => (
            <ul className="collapsible col s12 hoverable" data-collapsible="accordion">
     <li>
       <div className="collapsible-header">
-<h4 className="title">{props.title} <button class="btn red delete" data-title="{{title}}" data-sum="{{sum}}" data-link="{{link}}">Delete</button></h4>
+<h4 className="title">{props.title}</h4>
       </div>
 
       <div className="collapsible-body">
       <div className="col s6">
+      <button class="btn red delete" onClick={() => props.delmov(props.title)}>Delete Movie</button>
         <p>Year: {props.year}</p>
         <p>Rating: {props.rated}</p>
         <p>Genre: {props.genre}</p>
@@ -27,7 +28,7 @@ const ItemCard = props => (
 
         <div className="col s10">
        <p>Review: {props.review}</p>
-        <a class="btn red delClick right" id="del{{_id}}">Delete Review</a> 
+        <a class="btn red delClick right" onClick={() => props.delnote(props.noteid)}>Delete Review</a> 
         </div>
 
 <div className="notesHere col s12">
