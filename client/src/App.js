@@ -102,6 +102,23 @@ class App extends Component {
     });
   };
 
+getArticles = () => {
+
+axios.get("/articles").then(articles => {
+
+console.log("got articles");
+console.log(articles.data.dbArticle);
+
+ this.setState({
+
+    articles: articles.data.dbArticle
+})
+
+$('.collapsible').collapsible();
+
+
+})
+};
 
   saveMovie = () => {
 
@@ -164,27 +181,11 @@ this.socket.emit('SEND_MESSAGE', {
     });
 
 
-})
-
-
-};
-
-
-getArticles = () => {
-
-axios.get("/articles").then(articles => {
-
-console.log("got articles");
-console.log(articles.data.dbArticle);
-
- this.setState({
-
-    articles: articles.data.dbArticle
-})
-
-$('.collapsible').collapsible();
+  this.getArticles();
 
 })
+
+
 };
 
 saveNote = id => {
@@ -245,7 +246,7 @@ axios.post("/delete", {info}).then(articles => {
     });
 
 
-
+ this.getArticles();
 })
 };
 
