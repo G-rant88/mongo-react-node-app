@@ -58,13 +58,13 @@ io.on('connection', (socket) => {
 
         socket.on('ADD_REV', function(data){
 
-          io.emit('REV_MESSAGE');
+          io.emit('REV_MESSAGE', data);
 
         });
 
           socket.on('DEL_REV', function(data){
 
-          io.emit('REV_DEL');
+          io.emit('REV_DEL', data);
     });
 
 });

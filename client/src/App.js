@@ -24,7 +24,7 @@ const colors = {
   const addMessage = data => {
     console.log(data);
  
- 	NotificationManager.success("Movie " + data.message, 'SAVED');
+ 	NotificationManager.success(data.message, 'SAVED MOVIE');
     // alert("Movie " + data.message + " Saved");
 
    
@@ -34,25 +34,25 @@ const colors = {
   const delMessage = data => {
     console.log(data);
     
-    NotificationManager.error("Movie " + data.message, 'DELETED');
+    NotificationManager.error(data.message, 'DELETED MOVIE');
     // alert("Movie " + data.message + " Deleted");
 
    
 };
 
-  const addRev = () => {
+  const addRev = data => {
    
 
-   NotificationManager.success('Review', 'SAVED'); 
+   NotificationManager.success(data.message, 'REVIEW SAVED'); 
     // alert("Review Saved");
 
    
 };
 
-  const delRev = () => {
+  const delRev = data => {
     
 
-  NotificationManager.error('Review', 'DELETED');
+  NotificationManager.error("ID: " + data.message, 'REVIEW DELETED');
     // alert("Review Deleted");
 
    
@@ -208,7 +208,10 @@ axios.post("/note/"+id, {notey}).then(articles => {
 
   this.getArticles();
 
-  this.socket.emit('ADD_REV');
+  this.socket.emit('ADD_REV', {
+
+        message: notey.note
+    });
 
 
 });
@@ -222,7 +225,10 @@ delNote = id => {
 
 axios.post("/delnote/"+id).then(articles => {
 
-	this.socket.emit('DEL_REV');
+	this.socket.emit('DEL_REV', {
+
+		message: id
+	});
 
 
 
