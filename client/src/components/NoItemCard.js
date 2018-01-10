@@ -1,6 +1,12 @@
 import React from "react";
 import '../App.css';
 
+
+const bottom = {
+
+  borderBottom: "none"
+};
+
 const NoItemCard = props => (
 
 
@@ -10,7 +16,7 @@ const NoItemCard = props => (
 <h4 className="title">{props.title}</h4>
       </div>
 
-      <div className="collapsible-body">
+      <div className="collapsible-body" style={bottom}>
       <div className="col s6">
       <button class="btn red delete" onClick={() => props.delmov(props.title)}>Delete Movie</button>
         <p>Year: {props.year}</p>
