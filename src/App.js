@@ -12,6 +12,9 @@ import $ from "jquery";
 import 'materialize-css';
 import 'materialize-css/dist/css/materialize.min.css';
 import 'materialize-css/dist/js/materialize.min.js';
+import io from "socket.io-client";
+
+
 
 
 const colors = {
@@ -38,8 +41,12 @@ class App extends Component {
     awards: "",
     poster: "",
     review: "",
-    norev: "No review yet."
+    norev: "No review yet.",
+    message: ""
   };
+
+    socket = io('https://localhost:3000');
+
 
     searchMovie = (title, year) => {
     API.search(title, year)
@@ -115,12 +122,30 @@ this.setState({
     saved: true
 })
 
+ this.socket.emit('SAVED', {
+
+        message: this.state.movieTitle
+    });
+
+
 $('.collapsible').collapsible();
 
 })
 
 
 };
+
+addMessage = data => {
+    console.log(data);
+    Materialize.toast( data + " Saved", 5000);
+    
+};
+
+
+  socket.on('MESSAGE', function(data){
+    addMessage(data);
+});
+
 
 
 getArticles = () => {

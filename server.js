@@ -8,6 +8,10 @@ var fs = require('fs');
 var path = require("path");
 var PORT = process.env.PORT || 3000;
 
+const io = require('socket.io')();
+
+io.listen(PORT);
+
 var app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -20,6 +24,7 @@ app.use(logger("dev"));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(express.static("build"));
+
 
 mongoose.Promise = Promise;
 
@@ -34,6 +39,14 @@ mongoose.connect("mongodb://localhost/reactdb", {
 });
 
 }
+
+io.on('connection', (socket) => {
+    console.log(socket.id);
+
+     socket.on('SAVED', function(data){
+        io.emit('MESSAGE', data);
+});
+
 
 app.post("/app/save", function(req, res) {
 
