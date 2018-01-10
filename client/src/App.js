@@ -208,10 +208,7 @@ axios.post("/note/"+id, {notey}).then(articles => {
 
   this.getArticles();
 
-  this.socket.emit('ADD_REV', {
-
-        message: this.state.review
-    });
+  this.socket.emit('ADD_REV');
 
 
 });
@@ -249,7 +246,10 @@ axios.post("/delete", {info}).then(articles => {
   $('.collapsible').collapsible('close', 0);
 
 
-  this.socket.emit('DEL_SEND');
+  this.socket.emit('DEL_SEND', {
+
+        message: info.title
+    });
 
 
  this.getArticles();
