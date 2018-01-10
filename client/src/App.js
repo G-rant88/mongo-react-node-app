@@ -12,11 +12,47 @@ import $ from "jquery";
 import 'materialize-css';
 import 'materialize-css/dist/css/materialize.min.css';
 import 'materialize-css/dist/js/materialize.min.js';
-
+import io from "socket.io-client";
+import {NotificationContainer, NotificationManager} from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
 
 const colors = {
   backgroundColor: "dodgerblue"
 };
+
+  const addMessage = data => {
+    console.log(data);
+    NotificationManager.success("Movie: " + data.message, "SAVED!" );
+    alert("Movie " + data.message + " Saved");
+
+   
+};
+
+
+  const delMessage = data => {
+    console.log(data);
+    NotificationManager.error("Movie: " + data.message, "DELETED!" );
+    alert("Movie " + data.message + " Deleted");
+
+   
+};
+
+  const addRev = () => {
+   
+    NotificationManager.error("Review", "SAVED!" );
+    alert("Review Saved");
+
+   
+};
+
+  const delRev = () => {
+    
+    NotificationManager.success("Review", "DELETED!" );
+    alert("Review Deleted");
+
+   
+};
+
 
 
 class App extends Component {
@@ -39,8 +75,13 @@ class App extends Component {
     awards: "",
     poster: "",
     review: "",
-    norev: "No review yet."
+    norev: "No review yet.",
+    message: ""
   };
+
+  socket = io('localhost:3000');
+
+
 
     searchMovie = (title, year) => {
     API.search(title, year)
@@ -62,6 +103,7 @@ class App extends Component {
       [name]: value
     });
   };
+
 
   saveMovie = () => {
 
@@ -118,6 +160,15 @@ this.setState({
 
 $('.collapsible').collapsible();
 
+this.socket.emit('SEND_MESSAGE', {
+
+        message: this.state.movieTitle
+    });
+
+	this.socket.on('RECEIVE_MESSAGE', function(data){
+    addMessage(data);
+});
+
 })
 
 
@@ -155,8 +206,15 @@ axios.post("/note/"+id, {notey}).then(articles => {
 
   this.getArticles();
 
+  this.socket.emit('ADD_REV');
+
+  this.socket.on('REV_MESSAGE', function(data){
+    addRev();
+
 
 })
+});
+
 };
 
 delNote = id => {
@@ -165,6 +223,13 @@ delNote = id => {
 
 
 axios.post("/delnote/"+id).then(articles => {
+
+	this.socket.emit('DEL_REV');
+
+  this.socket.on('REV_DEL', function(data){
+    delRev();
+
+});
 
   this.getArticles();
 
@@ -185,6 +250,17 @@ axios.post("/delete", {info}).then(articles => {
   this.getArticles();
   $('.collapsible').collapsible('close', 0);
 
+
+  this.socket.emit('DEL_SEND', {
+
+        message: info.title
+    });
+
+	this.socket.on('DEL_MESSAGE', function(data){
+    delMessage(data);
+
+});
+
 })
 };
 
@@ -194,6 +270,7 @@ axios.post("/delete", {info}).then(articles => {
     this.getArticles();
 
     $('.collapsible').collapsible();
+
 
   }
 
@@ -211,6 +288,7 @@ axios.post("/delete", {info}).then(articles => {
     return (
   
   <div>
+
     <div class="row">
       <nav style={colors}>
     <div class="nav-wrapper">
@@ -331,6 +409,7 @@ articles.note ?
             </div>
   </div>
 </footer>
+
 
 </div>
     )

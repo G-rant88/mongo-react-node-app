@@ -35,6 +35,41 @@ mongoose.connect("mongodb://localhost/reactdb", {
 
 }
 
+server = app.listen(PORT, function() {
+  console.log("App running on port " + PORT + "!");
+});
+
+var socket = require('socket.io');
+ io = socket(server);
+
+io.on('connection', (socket) => {
+    console.log(socket.id, "SOCKET CONNECTED!!");
+
+     socket.on('SEND_MESSAGE', function(data){
+
+        io.emit('RECEIVE_MESSAGE', data);
+
+      });
+
+        socket.on('DEL_SEND', function(data){
+        io.emit('DEL_MESSAGE', data);
+
+      });
+
+        socket.on('ADD_REV', function(data){
+
+          io.emit('REV_MESSAGE');
+
+        });
+
+          socket.on('DEL_REV', function(data){
+
+          io.emit('REV_DEL');
+    });
+
+});
+
+
 app.post("/save", function(req, res) {
 
   console.log(req.body);
@@ -165,6 +200,4 @@ app.get("/", function(req, res){
   res.render("index.html");
 })
 
-app.listen(PORT, function() {
-  console.log("App running on port " + PORT + "!");
-});
+
