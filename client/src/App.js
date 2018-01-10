@@ -43,7 +43,7 @@ const colors = {
   const addRev = data => {
    
 
-   NotificationManager.success(data.message, 'REVIEW SAVED'); 
+   NotificationManager.success('', 'REVIEW SAVED'); 
     // alert("Review Saved");
 
    
@@ -52,7 +52,7 @@ const colors = {
   const delRev = data => {
     
 
-  NotificationManager.error("ID: " + data.message, 'REVIEW DELETED');
+  NotificationManager.error('', 'REVIEW DELETED');
     // alert("Review Deleted");
 
    
@@ -210,7 +210,7 @@ axios.post("/note/"+id, {notey}).then(articles => {
 
   this.socket.emit('ADD_REV', {
 
-        message: notey.note
+        message: this.state.review
     });
 
 
@@ -225,10 +225,7 @@ delNote = id => {
 
 axios.post("/delnote/"+id).then(articles => {
 
-	this.socket.emit('DEL_REV', {
-
-		message: id
-	});
+	this.socket.emit('DEL_REV');
 
 
 
@@ -252,10 +249,7 @@ axios.post("/delete", {info}).then(articles => {
   $('.collapsible').collapsible('close', 0);
 
 
-  this.socket.emit('DEL_SEND', {
-
-        message: info.title
-    });
+  this.socket.emit('DEL_SEND');
 
 
  this.getArticles();
