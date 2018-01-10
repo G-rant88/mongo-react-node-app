@@ -13,6 +13,7 @@
     "react-scripts": "1.0.14"
   },
   "scripts": {
+  	"prestart": "react-scripts build", 
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
