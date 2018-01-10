@@ -35,7 +35,7 @@ mongoose.connect("mongodb://localhost/reactdb", {
 
 }
 
-app.post("/app/save", function(req, res) {
+app.post("/save", function(req, res) {
 
   console.log(req.body);
 
@@ -70,7 +70,7 @@ app.post("/app/save", function(req, res) {
 
     });
 
-app.get("/app/articles", function(req, res) {
+app.get("/articles", function(req, res) {
 
 db.Article
     .find({})
@@ -84,7 +84,7 @@ db.Article
     })
 });
 
-app.post('/app/note/:id', function(req, res){
+app.post('/note/:id', function(req, res){
 
 console.log(req.body);
 
@@ -113,7 +113,7 @@ console.log(req.body);
     });
 });
 
-app.post("/app/delnote/:id", function(req, res) {
+app.post("/delnote/:id", function(req, res) {
 
   console.log(req.params.id)
 
@@ -137,7 +137,7 @@ app.post("/app/delnote/:id", function(req, res) {
     });
 
 
-app.post("/app/delete", function(req, res) {
+app.post("/delete", function(req, res) {
 
   console.log(req.body.info.title);
 
@@ -160,7 +160,7 @@ app.post("/app/delete", function(req, res) {
 
     });
 
-app.get("/app", function(req, res){
+app.get("/", function(req, res){
 
   res.render("index.html");
 })

@@ -104,7 +104,7 @@ console.log(this.state.movieTitle);
 
 
 
-axios.post("/app/save", {info}).then(articles => {
+axios.post("/save", {info}).then(articles => {
 
 console.log("got articles");
 console.log(articles.data.dbArticle);
@@ -126,7 +126,7 @@ $('.collapsible').collapsible();
 
 getArticles = () => {
 
-axios.get("/app/articles").then(articles => {
+axios.get("/articles").then(articles => {
 
 console.log("got articles");
 console.log(articles.data.dbArticle);
@@ -151,7 +151,7 @@ note: this.state.review
 
 }
 
-axios.post("/app/note/"+id, {notey}).then(articles => {
+axios.post("/note/"+id, {notey}).then(articles => {
 
   this.getArticles();
 
@@ -164,7 +164,7 @@ delNote = id => {
   var id = id;
 
 
-axios.post("/app/delnote/"+id).then(articles => {
+axios.post("/delnote/"+id).then(articles => {
 
   this.getArticles();
 
@@ -180,7 +180,7 @@ var info = {
 }
 
 
-axios.post("/app/delete", {info}).then(articles => {
+axios.post("/delete", {info}).then(articles => {
 
   this.getArticles();
   $('.collapsible').collapsible('close', 0);
