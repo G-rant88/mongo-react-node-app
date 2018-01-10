@@ -13,6 +13,7 @@ import 'materialize-css';
 import 'materialize-css/dist/css/materialize.min.css';
 import 'materialize-css/dist/js/materialize.min.js';
 import io from "socket.io-client";
+import { ToastContainer, toast } from 'react-toastify';
 
 
 
@@ -20,6 +21,8 @@ import io from "socket.io-client";
 const colors = {
   backgroundColor: "dodgerblue"
 };
+
+const socket = io('https://localhost:3000');
 
 class App extends Component {
 
@@ -45,8 +48,6 @@ class App extends Component {
     message: ""
   };
 
-    socket = io('https://localhost:3000');
-
 
     searchMovie = (title, year) => {
     API.search(title, year)
@@ -68,6 +69,12 @@ class App extends Component {
       [name]: value
     });
   };
+
+ addMessage = data => {
+    console.log(data);
+    toast( data + " Saved", 5000);
+    
+};
 
   saveMovie = () => {
 
@@ -132,20 +139,11 @@ $('.collapsible').collapsible();
 
 })
 
-
-};
-
-addMessage = data => {
-    console.log(data);
-    Materialize.toast( data + " Saved", 5000);
-    
-};
-
-
-  socket.on('MESSAGE', function(data){
-    addMessage(data);
+ socket.on('MESSAGE', function(data){
+    this.addMessage(data);
 });
 
+};
 
 
 getArticles = () => {
