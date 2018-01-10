@@ -104,7 +104,7 @@ console.log(this.state.movieTitle);
 
 
 
-axios.post("/save", {info}).then(articles => {
+axios.post("/app/save", {info}).then(articles => {
 
 console.log("got articles");
 console.log(articles.data.dbArticle);
