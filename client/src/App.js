@@ -13,6 +13,8 @@ import 'materialize-css';
 import 'materialize-css/dist/css/materialize.min.css';
 import 'materialize-css/dist/js/materialize.min.js';
 import io from "socket.io-client";
+import {NotificationContainer, NotificationManager} from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
 
 
 const colors = {
@@ -22,7 +24,8 @@ const colors = {
   const addMessage = data => {
     console.log(data);
  
-    alert("Movie " + data.message + " Saved");
+ 	NotificationManager.success("Movie " + data.message, 'SAVED');
+    // alert("Movie " + data.message + " Saved");
 
    
 };
@@ -31,23 +34,26 @@ const colors = {
   const delMessage = data => {
     console.log(data);
     
-    alert("Movie " + data.message + " Deleted");
+    NotificationManager.error("Movie " + data.message, 'DELETED');
+    // alert("Movie " + data.message + " Deleted");
 
    
 };
 
   const addRev = () => {
    
-    
-    alert("Review Saved");
+
+   NotificationManager.success('Review', 'SAVED'); 
+    // alert("Review Saved");
 
    
 };
 
   const delRev = () => {
     
-  
-    alert("Review Deleted");
+
+  NotificationManager.error('Review', 'DELETED');
+    // alert("Review Deleted");
 
    
 };
@@ -257,7 +263,7 @@ axios.post("/delete", {info}).then(articles => {
 
     $('.collapsible').collapsible();
 
-
+  
   this.socket.on('REV_MESSAGE', function(data){
     addRev();
 
@@ -294,7 +300,6 @@ axios.post("/delete", {info}).then(articles => {
     return (
   
   <div>
-
     <div class="row">
       <nav style={colors}>
     <div class="nav-wrapper">
@@ -302,6 +307,10 @@ axios.post("/delete", {info}).then(articles => {
     </div>
   </nav>
 </div>
+
+  <NotificationContainer/>
+ 
+
 <div className="container">
 <div class="row toprow z-depth-5">
   <div class="col s12 center-align hoverable">
