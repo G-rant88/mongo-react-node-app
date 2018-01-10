@@ -1,0 +1,21 @@
+
+.row{
+	background-color: white;
+}
+
+
+p{
+
+margin-top: 10px;
+margin-bottom: 10px;
+  font-size: 18px;
+  
+}
+
+.collapsible-body{
+
+  border-bottom: !important none;
+}
+
+
+
