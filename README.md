@@ -9,5 +9,5 @@
   <li>Delete a saved movie/review</li>
   <li>Socket.io will notify all users when an update (save/delete) to a movie/review is made</li>
     </ul>
-<img src ="https://media.giphy.com/media/l3diRp2Qpt3ul2cRW/giphy.gif"/>
-<p>Full video demo <a href="https://youtu.be/0aSNQtfP7hQ">HERE</a>
+<img src ="https://media.giphy.com/media/l3diU7VCaeoOewWHe/giphy.gif"/>
+<p>Full video demo <a href="https://www.youtube.com/watch?v=VzlA7ebq-2Y">HERE</a>
